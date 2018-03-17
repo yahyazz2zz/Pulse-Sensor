@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment0.text=\n\ Sample\ SPI\ Program\n\n\ @param\ args\ (none)\n\ @throws\ InterruptedException\n\ @throws\ IOException\n
+comment1.params=
+comment1.target=void\ read()
+comment1.text=\n\ Read\ data\ via\ SPI\ bus\ from\ MCP3002\ chip.\n\ @throws\ IOException\n
+comment2.params=channel
+comment2.target=int\ getConversionValue(short)
+comment2.text=\n\ Communicate\ to\ the\ ADC\ chip\ via\ SPI\ to\ get\ single-ended\ conversion\ value\ for\ a\ specified\ channel.\n\ @param\ channel\ analog\ input\ channel\ on\ ADC\ chip\n\ @return\ conversion\ value\ for\ specified\ analog\ input\ channel\n\ @throws\ IOException\n
+numComments=3
