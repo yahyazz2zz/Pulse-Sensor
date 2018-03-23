@@ -33,7 +33,7 @@ public class Pulse implements Runnable {
         long lastTime = System.currentTimeMillis();
 
         while (console.isRunning()) {
-
+            console.println("pulse thread is running");
             int Signal = 0;
             try {
                 Signal = spi.getConversionValue((short) 0);
