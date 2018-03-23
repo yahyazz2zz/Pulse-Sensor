@@ -29,11 +29,11 @@ public class Driver {
         // allow for user to exit program using CTRL-C
         console.promptForExit();
         Pulse pulse = new Pulse(console);
+        pulse.start();
 
         while (console.isRunning()) {
             console.println("pulse: " + pulse.pulse);
             Thread.sleep(1000);
-            pulse.start();
         }
     }
 }
