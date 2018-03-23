@@ -33,7 +33,7 @@ public class Driver {
         while (console.isRunning()) {
             console.println("pulse: " + pulse.pulse);
             Thread.sleep(1000);
-            pulse.run();
+            pulse.start();
         }
     }
 }
