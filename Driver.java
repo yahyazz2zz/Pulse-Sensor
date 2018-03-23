@@ -31,10 +31,10 @@ public class Driver {
         Pulse pulse = new Pulse(console);
         Thread pulseThread = new Thread(pulse);
 
-        pulseThread.run();
         while (console.isRunning()) {
-            console.println(pulse.pulse);
+            console.println("pulse: " + pulse.pulse);
             Thread.sleep(1000);
+            pulseThread.run();
         }
     }
 }

@@ -33,7 +33,7 @@ public class Pulse implements Runnable {
         long lastTime = System.currentTimeMillis();
 
         while (console.isRunning()) {
-            console.println("pulse thread is running");
+
             int Signal = 0;
             try {
                 Signal = spi.getConversionValue((short) 0);
@@ -56,17 +56,17 @@ public class Pulse implements Runnable {
                 P = Signal;
             }
             if (N > 250){                                        // avoid high frequency noise
-                if ((Signal > thresh) && (this.pulse == false) && (N > (IBI / 5.0) * 3) ){
+                if ((Signal > thresh) && (!this.pulse) && (N > (IBI / 5.0) * 3) ){
                     this.pulse = true;                                //set the Pulse flag when we think there is a pulse
                     IBI = sampleCounter - lastBeatTime;          //measure time between beats in mS
                     lastBeatTime = sampleCounter;                //keep track of time for next pulse
-                    if (secondBeat == true) {                     // if this is the second beat, if secondBeat == TRUE
+                    if (secondBeat) {                     // if this is the second beat, if secondBeat == TRUE
                         secondBeat = false;                      // clear secondBeat flag
                         for (int i = 0; i < rate.length -1; i++){          // seed the running total to get a realisitic BPM at startup
                             rate[i] = IBI;
                         }
                     }
-                    if (firstBeat == true) {                      //if it's the first time we found a beat, if firstBeat == TRUE
+                    if (firstBeat) {                      //if it's the first time we found a beat, if firstBeat == TRUE
                         firstBeat = false;                      //clear firstBeat flag
                         secondBeat = true;                      //set the second beat flag
                         continue;
@@ -80,7 +80,7 @@ public class Pulse implements Runnable {
                 }
             }
 
-            if (Signal < thresh && this.pulse == true) {       //when the values are going down, the beat is over
+            if (Signal < thresh && this.pulse) {       //when the values are going down, the beat is over
                 this.pulse = false;                        //reset the Pulse flag so we can do it again
                 amp = P - T;                              //get amplitude of the pulse wave
                 thresh = amp / 2 + T;                     //set thresh at 50 % of the amplitude
