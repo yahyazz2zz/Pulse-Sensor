@@ -6,7 +6,7 @@ import com.pi4j.util.Console;
 import java.io.IOException;
 import java.util.stream.IntStream;
 
-public class Pulse implements Runnable {
+public class Pulse extends Thread {
 
     private SpiUtil spi = new SpiUtil();
     private Console console;
@@ -98,9 +98,9 @@ public class Pulse implements Runnable {
                 BPM = 0;
             }
             try {
-                Thread.sleep(50);
+                sleep(50);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
 
